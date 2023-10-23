@@ -4,6 +4,7 @@
 - _Franco Casavecchia_
 - _Victoria Sponton_
 - _Manuel Ferreras_
+- _Martina Becerra_
 
 ## Ejercitacion:
 Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mod_resource/content/0/prog%203%20parcial%202.pdf)
