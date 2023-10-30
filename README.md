@@ -14,7 +14,7 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 ## Instrucciones de Uso:
 
 ### Uso Normal
-- Procesador_inventario.exe [Argumentos] inventariofisico.csv
+- Procesador_inventario.exe [Argumentos] inventarioFisico.csv
 
 ### Argumentos:
 - total_art_dif                     : Cantidad de articulos diferentes.
