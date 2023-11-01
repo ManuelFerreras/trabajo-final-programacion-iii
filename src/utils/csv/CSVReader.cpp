@@ -5,13 +5,7 @@
 #include <string>
 #include <unordered_map>
 #include <map>
-
-struct Articulo {
-    std::string grupo;
-    std::string nombre;
-    std::vector<int> stockPorDeposito; // Almacena el stock de cada depósito
-    int stockTotal = 0; // Sumatoria del stock en todos los depósitos
-};
+#include "../../constants/Structs.h"
 
 std::vector<std::string> splitCSVLine(const std::string& linea) {
   std::vector<std::string> campos;

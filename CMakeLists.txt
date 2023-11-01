@@ -3,15 +3,12 @@ project(trabajo_final_programacion_iii)
 
 set(CMAKE_CXX_STANDARD 14)
 
-include_directories(src/utils)
-
 add_executable(trabajo_final_programacion_iii
-        src/utils/Utils.h
-        src/utils/Utils.cpp
-        src/map/ArticlesMap.h
-        src/map/ArticlesMap.cpp
-        src/deposit/DepositTree.h
-        src/deposit/DepositTree.cpp
-        src/csv/CSVReader.h
-        src/csv/CSVReader.cpp
-        src/main.cpp)
+        src/utils/map/ArticlesMap.h
+        src/utils/map/ArticlesMap.cpp
+        src/utils/deposit/DepositTree.h
+        src/utils/deposit/DepositTree.cpp
+        src/utils/csv/CSVReader.h
+        src/utils/csv/CSVReader.cpp
+        src/main.cpp
+)

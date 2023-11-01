@@ -22,8 +22,8 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 - total_art                           : Cantidad de articulos totales.
 - min_stock[n]                        : Listado de articulos con n o menos unidades en stock.
 - min_stock[n],[deposito]             : Listado de articulos con n o menos unidades en stock segun el deposito.
-- stock[nombre_articulo]              : Stock total del articulo
-- stock[nombre_articulo],[deposito]   : Stock total del articulo segun el deposito
+- stock[codigo_de_barra]              : Stock total del articulo
+- stock[codigo_de_barra],[deposito]   : Stock total del articulo segun el deposito
 - max_stock[n]                        : Listado de articulos con n o mas unidades en stock.
 ```
 

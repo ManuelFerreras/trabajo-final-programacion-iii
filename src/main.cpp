@@ -1,32 +1,29 @@
 #include <iostream>
 #include <unordered_map>
 #include <map>
-#include "csv/CSVReader.h"
-#include "deposit/DepositTree.h"
+#include "utils/csv/CSVReader.h"
+#include "utils/deposit/DepositTree.h"
+#include "utils/map/ArticlesMap.h"
 
 std::unordered_map<std::string, std::function<void(const std::string&)>> routerDeArgumentos(
     std::unordered_map<std::string, Articulo>& mapaArticulos,
     std::vector<std::multimap<int, std::string>>& depositos
 ) {
-  // Definir las acciones como funciones lambda
+  // Definimos las acciones como funciones lambda.
   std::unordered_map<std::string, std::function<void(const std::string&)>> acciones = {
     {"total_art_dif", [&mapaArticulos](const std::string& param) {
-      int cantidadArticulos = mapaArticulos.size();
+      int cantidadArticulos = getTotalArticulosDiferentes(mapaArticulos);
       std::cout << "Cantidad de articulos diferentes: " << cantidadArticulos << std::endl;
       return;
     }},
 
     {"total_art", [&mapaArticulos](const std::string& param) {
-      int cantidadArticulos = 0;
-      for (const auto& par : mapaArticulos) {
-        cantidadArticulos += par.second.stockTotal;
-      }
+      int cantidadArticulos = getTotalArticulos(mapaArticulos);
       std::cout << "Cantidad de articulos: " << cantidadArticulos << std::endl;
       return;
     }},
 
     {"min_stock", [&depositos](const std::string& param) {
-      std::cout << "Param: " << param << std::endl;
       auto params = splitCSVLine(param);
       if (params.size() == 1) {
         int minStock = std::stoi(params[0]);
@@ -34,7 +31,6 @@ std::unordered_map<std::string, std::function<void(const std::string&)>> routerD
         std::cout << "Cantidad de articulos totales con stock menor o igual a " << minStock << ": " << totalArticulosFiltrados << std::endl;
       }
       else {
-        // Implementa la lógica para mostrar artículos con 'params[0]' o menos unidades en stock según el depósito 'params[1]'.
         int minStock = std::stoi(params[0]);
         int deposito = std::stoi(params[1]);
         int totalArticulosFiltrados = mostrarArticulosConStockMenorOIgualA(depositos[deposito], minStock);
@@ -42,18 +38,27 @@ std::unordered_map<std::string, std::function<void(const std::string&)>> routerD
       }
     }},
 
-    {"stock", [/* captura lo que necesites */](const std::string& param) {
+    {"stock", [&mapaArticulos](const std::string& param) {
       auto params = splitCSVLine(param);
+        std::string codigoBarras = params[0];
       if (params.size() == 1) {
-        // Implementa la lógica para mostrar el stock total del artículo 'params[0]'.
+        int stockTotal = getStockTotal(mapaArticulos, codigoBarras);
+        std::cout << "Stock total del articulo '" << codigoBarras << "': " << stockTotal << std::endl;
       }
       else {
-        // Implementa la lógica para mostrar el stock total del artículo 'params[0]' según el depósito 'params[1]'.
+        int deposito = std::stoi(params[1]);
+        int stockTotal = getStockTotal(mapaArticulos, codigoBarras, deposito);
+        std::cout << "Stock del articulo '" << codigoBarras << "' en el deposito #" << deposito << ": " << stockTotal << std::endl;
       }
     }},
 
-    {"max_stock", [/* captura lo que necesites */](const std::string& param) {
-      // Implementa la lógica para mostrar artículos con 'param' o más unidades en stock.
+    {"max_stock", [&depositos](const std::string& param) {
+      auto params = splitCSVLine(param);
+      if (params.size() == 1) {
+        int minStock = std::stoi(params[0]);
+        int totalArticulosFiltrados = mostrarArticulosConStockMayorOIgualA(depositos[0], minStock);
+        std::cout << "Cantidad de articulos totales con stock menor o igual a " << minStock << ": " << totalArticulosFiltrados << std::endl;
+      }
     }}
   };
 
