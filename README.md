@@ -5,11 +5,11 @@
 - _Victoria Sponton_
 - _Manuel Ferreras_
 - _Martina Becerra_
+<br></br>
 
 ## Ejercitacion:
 Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mod_resource/content/0/prog%203%20parcial%202.pdf)
- 
-## Diagrama de Clases:
+<br></br>
 
 ## Instrucciones de Uso:
 
@@ -70,6 +70,7 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 
 ### Uso Normal
 - Procesador_inventario.exe [Argumentos] inventarioFisico.csv
+<br></br>
 
 ### Argumentos:
 ```console
@@ -81,5 +82,6 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 - stock[codigo_de_barra],[deposito]   : Stock total del articulo segun el deposito
 - max_stock[n]                        : Listado de articulos con n o mas unidades en stock.
 ```
+<br></br>
 
 ## Overview del Proyecto:
