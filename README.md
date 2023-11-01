@@ -13,6 +13,61 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 
 ## Instrucciones de Uso:
 
+1) Primero, tendremos que crear un build del proyecto para poder ejecutarlo en el OS que querramos. 
+<br></br>
+
+2) Abrimos una terminal en el archivo generado (llamado `cmake-build-debug` por CLion).
+<br></br>
+
+3) Podemos ejecutar el programa con el siguiente comando:
+```bash
+./trabajo_final_programacion_iii "argumento" "path al csv"
+```
+<br></br>
+
+### Ejemplos de Comandos:
+- Ejecutar la función `total_art_dif`:
+```bash
+./trabajo_final_programacion_iii total_art_dif ../data/inventarioFisico.csv
+```
+<br>
+
+- Ejecutar la función `total_art`:
+```bash
+./trabajo_final_programacion_iii total_art_dif ../data/inventarioFisico.csv
+```
+<br>
+
+- Ejecutar la función `min_stock` sin deposito específico, dado un `n` -> Stock Mínimo:
+```bash
+./trabajo_final_programacion_iii "min_stock[n]" ../data/inventarioFisico.csv
+```
+<br>
+
+- Ejecutar la función `min_stock` con deposito específico, dado un `n` -> Stock Mínimo, y un `m` -> Número de Depósito:
+```bash
+./trabajo_final_programacion_iii "min_stock[n,m]" ../data/inventarioFisico.csv
+```
+<br>
+
+- Ejecutar la función `stock` sin deposito específico, dado un `n` -> Código de Barras:
+```bash
+./trabajo_final_programacion_iii "stock[\"n\"]" ../data/inventarioFisico.csv
+```
+<br>
+
+- Ejecutar la función `stock` con deposito específico, dado un `n` -> Código de Barras, y un `m` -> Número de Depósito:
+```bash
+./trabajo_final_programacion_iii "stock[\"n\",m]" ../data/inventarioFisico.csv
+```
+<br>
+
+- Ejecutar la función `max_stock` sin deposito específico, dado un `n` -> Stock Máximo:
+```bash
+./trabajo_final_programacion_iii "max_stock[n]" ../data/inventarioFisico.csv
+```
+<br>
+
 ### Uso Normal
 - Procesador_inventario.exe [Argumentos] inventarioFisico.csv
 
