@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <map>
 
 struct Articulo {
     std::string grupo;
@@ -31,7 +32,7 @@ std::vector<std::string> splitCSVLine(const std::string& linea) {
   return campos;
 }
 
-std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo) {
+std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo, std::vector<std::multimap<int, std::string>>& depositos) {
   std::ifstream file(archivo);
   if (!file.is_open()) {
     std::cerr << "No se pudo abrir el archivo " << archivo << std::endl;
@@ -43,6 +44,7 @@ std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo) {
 
   std::vector<std::string> encabezados = splitCSVLine(linea);
   int numDepositos = encabezados.size() - 3; // Restamos las primeras 3 columnas fijas
+  depositos.resize(numDepositos); // Ajustar el tamaño del vector de depósitos
 
   std::unordered_map<std::string, Articulo> articulos;
 
@@ -66,6 +68,7 @@ std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo) {
         }
       }
       articulo.stockPorDeposito.push_back(stock);
+      depositos[i - 3].insert({stock, codigoBarras});
       articulo.stockTotal += stock;
     }
 
@@ -74,19 +77,4 @@ std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo) {
 
   file.close();
   return articulos;
-}
-
-int main() {
-  auto mapaArticulos = leerCSV("../data/inventarioFisico.csv");
-  // Procesa el mapa de artículos como lo necesites
-
-  // Por ejemplo, imprimir los nombres de los artículos y su stock total:
-  for (const auto& par : mapaArticulos) {
-    std::cout << par.second.nombre << ": " << par.second.stockTotal << std::endl;
-  }
-
-  // Imprimir un articulo especifico.
-  std::cout << "Articulo: " << mapaArticulos["RD-REJOIMP 150"].nombre << ": " << mapaArticulos["RD-REJOIMP 150"].stockTotal << std::endl;
-
-  return 0;
 }
