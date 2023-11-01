@@ -5,25 +5,25 @@
 - _Victoria Sponton_
 - _Manuel Ferreras_
 - _Martina Becerra_
-<br></br>
+<br>
 
 ## Ejercitacion:
 Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mod_resource/content/0/prog%203%20parcial%202.pdf)
-<br></br>
+<br>
 
 ## Instrucciones de Uso:
 
 1) Primero, tendremos que crear un build del proyecto para poder ejecutarlo en el OS que querramos. 
-<br></br>
+<br>
 
 2) Abrimos una terminal en el archivo generado (llamado `cmake-build-debug` por CLion).
-<br></br>
+<br>
 
 3) Podemos ejecutar el programa con el siguiente comando:
 ```bash
 ./trabajo_final_programacion_iii "argumento" "path al csv"
 ```
-<br></br>
+<br>
 
 ### Ejemplos de Comandos:
 - Ejecutar la función `total_art_dif`:
@@ -70,7 +70,7 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 
 ### Uso Normal
 - Procesador_inventario.exe [Argumentos] inventarioFisico.csv
-<br></br>
+<br>
 
 ### Argumentos:
 ```console
@@ -82,6 +82,6 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 - stock[codigo_de_barra],[deposito]   : Stock total del articulo segun el deposito
 - max_stock[n]                        : Listado de articulos con n o mas unidades en stock.
 ```
-<br></br>
+<br>
 
 ## Overview del Proyecto:
