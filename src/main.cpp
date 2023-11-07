@@ -2,6 +2,7 @@
 #include <functional>
 #include <unordered_map>
 #include <map>
+#include <iomanip>
 #include "utils/csv/CSVReader.h"
 #include "utils/deposit/DepositTree.h"
 #include "utils/map/ArticlesMap.h"
@@ -15,13 +16,19 @@ std::unordered_map<std::string, std::function<void(const std::string &)>> router
 ) {
     // Definimos las acciones como funciones lambda.
     std::unordered_map<std::string, std::function<void(const std::string &)>> acciones = {
-            {"total_art_dif", [&mapaArticulos](const std::string &param) {
+            {"total_art_dif",[&mapaArticulos](const std::string &param) {
                 int cantidadArticulos = getTotalArticulosDiferentes(mapaArticulos);
-                std::cout << "Cantidad de articulos diferentes: " << cantidadArticulos << std::endl;
+
+                std::string mensaje = "Cantidad de articulos diferentes: " + std::to_string(cantidadArticulos);
+                std::string linea(mensaje.length(), '-');
+                std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
             }},
 
-            {"total_art",     [depositosTotales](const std::string &param) {
-                std::cout << "Cantidad de articulos: " << depositosTotales << std::endl;
+            {"total_art",[depositosTotales](const std::string &param) {
+
+                std::string mensaje = "Cantidad de articulos diferentes: " + std::to_string(depositosTotales);
+                std::string linea(mensaje.length(), '-');
+                std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
             }},
 
 
@@ -30,14 +37,20 @@ std::unordered_map<std::string, std::function<void(const std::string &)>> router
                 if (validarParametros(param, minStock, deposito)) {
                     if (deposito == 0) {
                         int totalArticulosFiltrados = mostrarArticulosConStockMenorOIgualA(depositos[0], minStock);
-                        std::cout << "Cantidad de articulos totales con stock menor o igual a " << minStock << ": "
-                                  << totalArticulosFiltrados << std::endl;
+
+                        std::string mensaje = "Cantidad de articulos distintos totales con stock menor o igual a "
+                                + std::to_string(minStock) + ": " + std::to_string(totalArticulosFiltrados);
+                        std::string linea = std::string(mensaje.length(), '-');
+                        std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
                     } else {
                         int totalArticulosFiltrados = mostrarArticulosConStockMenorOIgualA(depositos[deposito],
                                                                                            minStock);
-                        std::cout << "Cantidad de articulos en el deposito #" << deposito
-                                  << " con stock menor o igual a " << minStock << ": " << totalArticulosFiltrados
-                                  << std::endl;
+
+                        std::string mensaje = "Cantidad de articulos distintos en el deposito #" + std::to_string(deposito)
+                                + " con stock menor o igual a " + std::to_string(minStock) + ": "
+                                + std::to_string(totalArticulosFiltrados);
+                        std::string linea = std::string(mensaje.length(), '-');
+                        std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
                     }
                 }
             }},
@@ -48,11 +61,19 @@ std::unordered_map<std::string, std::function<void(const std::string &)>> router
                     auto params = splitCSVLine(param);
                     if (deposito == 0) {
                         int stockTotal = getStockTotal(mapaArticulos, params[0]);
-                        std::cout << "Stock total del articulo '" << params[0] << "': " << stockTotal << std::endl;
+
+                        std::string mensaje = "Stock total del articulo '" + params[0] + "': "
+                                + std::to_string(stockTotal);
+                        std::string linea = std::string(mensaje.length(), '-');
+                        std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
+
                     } else {
                         int stockTotal = getStockTotal(mapaArticulos, params[0], deposito);
-                        std::cout << "Stock del articulo '" << params[0] << "' en el deposito #" << deposito << ": "
-                                  << stockTotal << std::endl;
+
+                        std::string mensaje = "Stock del articulo '" + params[0] + "' en el deposito #"
+                                + std::to_string(deposito) + ": " + std::to_string(stockTotal);
+                        std::string linea = std::string(mensaje.length(), '-');
+                        std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
                     }
                 }
             }},
@@ -62,8 +83,11 @@ std::unordered_map<std::string, std::function<void(const std::string &)>> router
                 int maxStock = 0;
                 if (validarParametros(param, maxStock, maxStock)) {
                     int totalArticulosFiltrados = mostrarArticulosConStockMayorOIgualA(depositos[0], maxStock);
-                    std::cout << "Cantidad de articulos totales con stock mayor o igual a " << maxStock << ": "
-                              << totalArticulosFiltrados << std::endl;
+
+                    std::string mensaje = "Cantidad de articulos distintos totales con stock mayor o igual a "
+                            + std::to_string(maxStock) + ": " + std::to_string(totalArticulosFiltrados);
+                    std::string linea = std::string(mensaje.length(), '-');
+                    std::cout << linea << '\n' << mensaje << '\n' << linea << '\n';
                 }
             }}
     };

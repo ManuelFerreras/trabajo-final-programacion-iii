@@ -34,7 +34,7 @@ Link a la [Ejercitacion](https://presencial.ucc.edu.ar/pluginfile.php/1193586/mo
 
 - Ejecutar la función `total_art`:
 ```bash
-./trabajo_final_programacion_iii total_art_dif ../data/inventarioFisico.csv
+./trabajo_final_programacion_iii total_art ../data/inventarioFisico.csv
 ```
 <br>
 
