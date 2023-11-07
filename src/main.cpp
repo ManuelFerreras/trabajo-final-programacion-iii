@@ -8,7 +8,8 @@
 
 std::unordered_map<std::string, std::function<void(const std::string&)>> routerDeArgumentos(
     std::unordered_map<std::string, Articulo>& mapaArticulos,
-    std::vector<std::multimap<int, std::string>>& depositos
+    std::vector<std::multimap<int, std::string>>& depositos,
+    int& depositosTotales
 ) {
   // Definimos las acciones como funciones lambda.
   std::unordered_map<std::string, std::function<void(const std::string&)>> acciones = {
@@ -18,9 +19,8 @@ std::unordered_map<std::string, std::function<void(const std::string&)>> routerD
       return;
     }},
 
-    {"total_art", [&mapaArticulos](const std::string& param) {
-      int cantidadArticulos = getTotalArticulos(mapaArticulos);
-      std::cout << "Cantidad de articulos: " << cantidadArticulos << std::endl;
+    {"total_art", [depositosTotales](const std::string& param) {
+      std::cout << "Cantidad de articulos: " << depositosTotales << std::endl;
       return;
     }},
 
@@ -85,12 +85,13 @@ int main(int argc, char* argv[]) {
    * Procesamos la data del CSV.
    */
   std::vector<std::multimap<int, std::string>> depositos;
-  std::unordered_map<std::string, Articulo> mapaArticulos = leerCSV(archivoCSV, depositos);
+  int depositosTotales = 0;
+  std::unordered_map<std::string, Articulo> mapaArticulos = leerCSV(archivoCSV, depositos, depositosTotales);
 
   /*
    * Procesamos el argumento ingresado.
    */
-  std::unordered_map<std::string, std::function<void(const std::string&)>> acciones = routerDeArgumentos(mapaArticulos, depositos);
+  std::unordered_map<std::string, std::function<void(const std::string&)>> acciones = routerDeArgumentos(mapaArticulos, depositos, depositosTotales);
 
   /*
    * Dividir el argumento para obtener la acción y el parámetro

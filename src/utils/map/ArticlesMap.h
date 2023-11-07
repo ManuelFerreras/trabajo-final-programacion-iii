@@ -12,11 +12,6 @@
 int getTotalArticulosDiferentes(const std::unordered_map<std::string, Articulo>& mapaArticulos);
 
 /*
- * Conseguimos el total de articulos a partir de la suma de todos los stocks de cada articulo.
- */
-int getTotalArticulos(const std::unordered_map<std::string, Articulo>& mapaArticulos);
-
-/*
  * Conseguimos el stock total de un articulo a partir de su codigo de barras.
  */
 int getStockTotal(const std::unordered_map<std::string, Articulo>& mapaArticulos, const std::string& codigoBarras);
