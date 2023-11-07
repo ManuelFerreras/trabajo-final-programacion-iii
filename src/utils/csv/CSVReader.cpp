@@ -48,6 +48,11 @@ std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo, st
     Articulo articulo;
 
     articulo.grupo = campos[0];
+    if (articulo.grupo.find("error") != std::string::npos || articulo.grupo.find("ERROR") != std::string::npos) {
+      std::cerr << "Error en el articulo: " << articulo.grupo << ". Salteando al siguiente articulo." << std::endl;
+      continue;
+    }
+
     std::string codigoBarras = campos[1];
     articulo.nombre = campos[2];
 
