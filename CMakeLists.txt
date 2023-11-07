@@ -11,4 +11,6 @@ add_executable(trabajo_final_programacion_iii
         src/utils/csv/CSVReader.h
         src/utils/csv/CSVReader.cpp
         src/main.cpp
+        src/utils/validations/validaciones.h
+        src/utils/validations/validaciones.cpp
 )
