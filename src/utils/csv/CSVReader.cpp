@@ -26,7 +26,7 @@ std::vector<std::string> splitCSVLine(const std::string& linea) {
   return campos;
 }
 
-std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo, std::vector<std::multimap<int, std::string>>& depositos) {
+std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo, std::vector<std::multimap<int, std::string>>& depositos, int& depositosTotales) {
   std::ifstream file(archivo);
   if (!file.is_open()) {
     std::cerr << "No se pudo abrir el archivo " << archivo << std::endl;
@@ -64,6 +64,7 @@ std::unordered_map<std::string, Articulo> leerCSV(const std::string& archivo, st
       articulo.stockPorDeposito.push_back(stock);
       depositos[i - 3].insert({stock, codigoBarras});
       articulo.stockTotal += stock;
+      depositosTotales += stock;
     }
 
     articulos[codigoBarras] = articulo;
